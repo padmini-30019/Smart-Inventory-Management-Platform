@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  backend-build:
+  build-backend:
     runs-on: ubuntu-latest
 
     defaults:
@@ -20,16 +20,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 21
+          java-version: '21'
+          distribution: 'temurin'
 
-      - name: Build Backend
+      - name: Build Spring Boot Project
         run: mvn clean package -DskipTests
 
-  frontend-build:
+  build-frontend:
     runs-on: ubuntu-latest
 
     defaults:
@@ -40,13 +40,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Frontend
+      - name: Build React App
         run: npm run build
