@@ -1,0 +1,178 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:#f4f7fc;
+}
+
+.main-content{
+  margin-left:250px;
+  padding:30px;
+}
+
+.page h1{
+  margin-bottom:25px;
+  color:#1e293b;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+.reports-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:25px;
+  margin-top:20px;
+}
+
+.report-card{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.success-alert{
+  background:#dcfce7;
+  color:#166534;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
+  font-weight:600;
+}
+
+.warning-alert{
+  background:#fef3c7;
+  color:#92400e;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.page{
+  padding:40px;
+}
+
+.page h1{
+  font-size:42px;
+  margin-bottom:25px;
+  color:#0f172a;
+}
+
+.report-card{
+  background:white;
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.report-card h2{
+  margin-bottom:20px;
+  color:#0f172a;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#2563eb;
+  color:white;
+  padding:15px;
+}
+
+td{
+  padding:14px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+tr:hover{
+  background:#f8fafc;
+}
+body.light{
+
+    background:#f8fafc;
+
+    color:#111827;
+}
+
+body.dark{
+
+    background:#0f172a;
+
+    color:white;
+}
+/* ===========================
+   DARK MODE
+=========================== */
+
+body.dark {
+  background: #0f172a;
+  color: white;
+}
+
+body.dark .main-content {
+  background: #0f172a;
+}
+
+body.dark .page h1 {
+  color: white;
+}
+
+body.dark .card,
+body.dark .report-card {
+  background: #1e293b;
+  color: white;
+}
+
+body.dark .report-card h2 {
+  color: white;
+}
+
+body.dark table {
+  color: white;
+}
+
+body.dark td {
+  border-bottom: 1px solid #334155;
+}
+
+body.dark tr:hover {
+  background: #334155;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #334155;
+  color: white;
+  border: 1px solid #475569;
+}
+
+body.dark .success-alert {
+  background: #14532d;
+  color: #dcfce7;
+}
+
+body.dark .warning-alert {
+  background: #78350f;
+  color: #fef3c7;
+}
+
+/* ===========================
+   LIGHT MODE
+=========================== */
+
+body.light {
+  background: #f8fafc;
+  color: #111827;
+}

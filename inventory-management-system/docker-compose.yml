@@ -1,0 +1,21 @@
+services:
+
+  postgres:
+    image: postgres:18
+    container_name: inventory-postgres
+    environment:
+      POSTGRES_DB: inventory_management
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: 2420030019/smart-inventory-management:latest
+    container_name: inventory-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres

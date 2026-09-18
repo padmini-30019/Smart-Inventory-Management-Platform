@@ -1,0 +1,78 @@
+.page{
+    padding:30px;
+}
+
+.report-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:16px;
+    text-align:center;
+}
+
+td{
+    padding:16px;
+    text-align:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+tr:hover{
+    background:#f8fafc;
+}
+
+.role-admin{
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+.role-user{
+    background:#dcfce7;
+    color:#15803d;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+.admin-btn{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.admin-btn:hover{
+    background:#b91c1c;
+}
+
+.user-btn{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.user-btn:hover{
+    background:#15803d;
+}
