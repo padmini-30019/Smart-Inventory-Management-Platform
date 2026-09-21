@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: inventory-backend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: inventory-backend
+
+  template:
+    metadata:
+      labels:
+        app: inventory-backend
+
+    spec:
+      containers:
+      - name: inventory-backend
+        image: 2420030019/smart-inventory-management:latest
+
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
+
+        ports:
+        - containerPort: 8080
