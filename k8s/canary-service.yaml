@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: canary-demo
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2026-09-03T05:53:15Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: canary-demo-service
+  namespace: default
+  resourceVersion: "42926"
+  uid: c05085c1-106b-467b-997b-11b37fb97bf6
+spec:
+  clusterIP: 10.110.199.139
+  clusterIPs:
+  - 10.110.199.139
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30828
+    port: 80
+    protocol: TCP
+    targetPort: 5678
+  selector:
+    app: canary-demo
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

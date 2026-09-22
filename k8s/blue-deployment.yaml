@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    meta.helm.sh/release-name: bluegreen
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2026-09-03T05:24:01Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: blue-deployment
+  namespace: default
+  resourceVersion: "57815"
+  uid: 2a89d842-c2b1-4524-8383-891878dd9cd2
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: blue-green-demo
+      version: blue
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: blue-green-demo
+        version: blue
+    spec:
+      containers:
+      - args:
+        - |
+          cat > /usr/share/nginx/html/index.html <<EOF
+          <!DOCTYPE html>
+          <html>
+          <head><title>Blue-Green Demo</title></head>
+          <body style="font-family: Arial; text-align: center; margin-top: 80px;">
+          <h1>BLUE VERSION</h1>
+          <h2>Application Version: 1.0</h2>
+          <p>This response is served by the Blue deployment.</p>
+          </body>
+          </html>
+          EOF
+          nginx -g 'daemon off;'
+        command:
+        - /bin/sh
+        - -c
+        env:
+        - name: VERSION_MESSAGE
+          value: BLUE VERSION - Application Version 1.0
+        image: nginx:1.25
+        imagePullPolicy: IfNotPresent
+        name: blue-container
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2026-09-03T05:24:19Z"
+    lastUpdateTime: "2026-09-03T05:25:53Z"
+    message: ReplicaSet "blue-deployment-674dbd685b" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2026-09-21T14:19:15Z"
+    lastUpdateTime: "2026-09-21T14:19:15Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  observedGeneration: 1
+  replicas: 2
+  terminatingReplicas: 0
+  unavailableReplicas: 2
+  updatedReplicas: 2

@@ -14,11 +14,42 @@ public class InventoryService {
     @Autowired
     private InventoryRepository inventoryRepository;
 
-    public Inventory addInventory(Inventory inventory) {
+    public Inventory addInventory(
+            Inventory inventory) {
+
         return inventoryRepository.save(inventory);
     }
 
     public List<Inventory> getAllInventory() {
-        return inventoryRepository.findAll();
+
+        return inventoryRepository
+                .findAllByOrderByIdAsc();
+    }
+
+    public Inventory updateInventory(
+            Long id,
+            Inventory inventory) {
+
+        Inventory existing =
+                inventoryRepository.findById(id)
+                        .orElseThrow(() ->
+                                new RuntimeException(
+                                        "Inventory Not Found"));
+
+        existing.setProductId(
+                inventory.getProductId());
+
+        existing.setQuantity(
+                inventory.getQuantity());
+
+        existing.setWarehouseLocation(
+                inventory.getWarehouseLocation());
+
+        return inventoryRepository.save(existing);
+    }
+
+    public void deleteInventory(Long id) {
+
+        inventoryRepository.deleteById(id);
     }
 }
