@@ -15,8 +15,14 @@ spec:
       containers:
       - name: inventory-ui
         image: 2420030019/smart-inventory-management:frontend
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
+
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://192.168.49.2:30081"
+
 ---
 apiVersion: v1
 kind: Service

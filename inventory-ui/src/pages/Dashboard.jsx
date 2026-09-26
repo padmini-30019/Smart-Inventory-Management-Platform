@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Dashboard.css";
@@ -29,7 +30,7 @@ function Dashboard() {
     try {
 
       const response = await axios.get(
-        "http://localhost:8080/api/dashboard/stats"
+        `${API_BASE_URL}/api/dashboard/stats`
       );
 
       setStats(response.data);

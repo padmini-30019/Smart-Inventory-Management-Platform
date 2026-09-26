@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -21,11 +22,11 @@ function Reports() {
     try {
 
       const ordersRes = await axios.get(
-        "http://localhost:8080/api/dashboard/recent-orders"
+        `${API_BASE_URL}/api/dashboard/recent-orders`
       );
 
       const stockRes = await axios.get(
-        "http://localhost:8080/api/dashboard/low-stock"
+        `${API_BASE_URL}/api/dashboard/low-stock`
       );
 
       setRecentOrders(ordersRes.data);
@@ -38,10 +39,6 @@ function Reports() {
     }
 
   };
-
-  // =========================
-  // EXPORT EXCEL
-  // =========================
 
   const exportExcel = () => {
 
@@ -77,10 +74,6 @@ function Reports() {
       "Orders_Report.xlsx"
     );
   };
-
-  // =========================
-  // EXPORT PDF
-  // =========================
 
   const exportPDF = () => {
 

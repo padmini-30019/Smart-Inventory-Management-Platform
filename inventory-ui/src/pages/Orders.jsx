@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,7 +24,7 @@ function Orders() {
   const loadOrders = async () => {
 
     const response = await axios.get(
-      "http://localhost:8080/orders"
+      `${API_BASE_URL}/orders`
     );
 
     setOrders(response.data);
@@ -40,7 +41,7 @@ function Orders() {
   const addOrder = async () => {
 
     await axios.post(
-      "http://localhost:8080/orders",
+      `${API_BASE_URL}/orders`,
       {
         productId: formData.productId,
         quantity: formData.quantity,
@@ -70,7 +71,7 @@ function Orders() {
   const updateOrder = async () => {
 
     await axios.put(
-      `http://localhost:8080/orders/${formData.id}`,
+      `${API_BASE_URL}/orders/${formData.id}`,
       formData
     );
 
@@ -94,7 +95,7 @@ function Orders() {
     }
 
     await axios.delete(
-      `http://localhost:8080/orders/${id}`
+      `${API_BASE_URL}/orders/${id}`
     );
 
     loadOrders();
@@ -169,90 +170,91 @@ function Orders() {
             </tr>
 
           </thead>
-<tbody>
 
-  {orders.length === 0 ? (
+          <tbody>
 
-    <tr>
+            {orders.length === 0 ? (
 
-      <td
-        colSpan={role === "ADMIN" ? 5 : 4}
-        style={{
-          textAlign: "center",
-          padding: "20px",
-          color: "#6b7280",
-          fontWeight: "600"
-        }}
-      >
-        No Orders Available
-      </td>
+              <tr>
 
-    </tr>
+                <td
+                  colSpan={role === "ADMIN" ? 5 : 4}
+                  style={{
+                    textAlign: "center",
+                    padding: "20px",
+                    color: "#6b7280",
+                    fontWeight: "600"
+                  }}
+                >
+                  No Orders Available
+                </td>
 
-  ) : (
+              </tr>
 
-    orders.map((order) => (
+            ) : (
 
-      <tr key={order.id}>
+              orders.map((order) => (
 
-        <td>{order.id}</td>
+                <tr key={order.id}>
 
-        <td>{order.productId}</td>
+                  <td>{order.id}</td>
 
-        <td>{order.quantity}</td>
+                  <td>{order.productId}</td>
 
-        <td>{order.status}</td>
+                  <td>{order.quantity}</td>
 
-        {role === "ADMIN" && (
+                  <td>{order.status}</td>
 
-          <td>
+                  {role === "ADMIN" && (
 
-            <button
-              style={{
-                background: "#2563eb",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                editOrder(order)
-              }
-            >
-              Edit
-            </button>
+                    <td>
 
-            <button
-              style={{
-                marginLeft: "10px",
-                background: "#dc2626",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                deleteOrder(order.id)
-              }
-            >
-              Delete
-            </button>
+                      <button
+                        style={{
+                          background: "#2563eb",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          editOrder(order)
+                        }
+                      >
+                        Edit
+                      </button>
 
-          </td>
+                      <button
+                        style={{
+                          marginLeft: "10px",
+                          background: "#dc2626",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          deleteOrder(order.id)
+                        }
+                      >
+                        Delete
+                      </button>
 
-        )}
+                    </td>
 
-      </tr>
+                  )}
 
-    ))
+                </tr>
 
-  )}
+              ))
 
-</tbody>
+            )}
+
+          </tbody>
 
         </table>
 

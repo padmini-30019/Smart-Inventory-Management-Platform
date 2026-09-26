@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,7 +24,7 @@ function Products() {
   const loadProducts = async () => {
 
     const response = await axios.get(
-      "http://localhost:8080/products"
+      `${API_BASE_URL}/products`
     );
 
     setProducts(response.data);
@@ -40,7 +41,7 @@ function Products() {
   const addProduct = async () => {
 
     await axios.post(
-      "http://localhost:8080/products",
+      `${API_BASE_URL}/products`,
       {
         name: formData.name,
         category: formData.category,
@@ -70,7 +71,7 @@ function Products() {
   const updateProduct = async () => {
 
     await axios.put(
-      `http://localhost:8080/products/${formData.id}`,
+      `${API_BASE_URL}/products/${formData.id}`,
       formData
     );
 
@@ -94,7 +95,7 @@ function Products() {
     }
 
     await axios.delete(
-      `http://localhost:8080/products/${id}`
+      `${API_BASE_URL}/products/${id}`
     );
 
     loadProducts();
@@ -170,90 +171,90 @@ function Products() {
 
           </thead>
 
-         <tbody>
+          <tbody>
 
-  {products.length === 0 ? (
+            {products.length === 0 ? (
 
-    <tr>
+              <tr>
 
-      <td
-        colSpan={role === "ADMIN" ? 5 : 4}
-        style={{
-          textAlign: "center",
-          padding: "20px",
-          color: "#6b7280",
-          fontWeight: "600"
-        }}
-      >
-        No Products Available
-      </td>
+                <td
+                  colSpan={role === "ADMIN" ? 5 : 4}
+                  style={{
+                    textAlign: "center",
+                    padding: "20px",
+                    color: "#6b7280",
+                    fontWeight: "600"
+                  }}
+                >
+                  No Products Available
+                </td>
 
-    </tr>
+              </tr>
 
-  ) : (
+            ) : (
 
-    products.map((product) => (
+              products.map((product) => (
 
-      <tr key={product.id}>
+                <tr key={product.id}>
 
-        <td>{product.id}</td>
+                  <td>{product.id}</td>
 
-        <td>{product.name}</td>
+                  <td>{product.name}</td>
 
-        <td>{product.category}</td>
+                  <td>{product.category}</td>
 
-        <td>₹ {product.price}</td>
+                  <td>₹ {product.price}</td>
 
-        {role === "ADMIN" && (
+                  {role === "ADMIN" && (
 
-          <td>
+                    <td>
 
-            <button
-              style={{
-                background: "#2563eb",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                editProduct(product)
-              }
-            >
-              Edit
-            </button>
+                      <button
+                        style={{
+                          background: "#2563eb",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          editProduct(product)
+                        }
+                      >
+                        Edit
+                      </button>
 
-            <button
-              style={{
-                marginLeft: "10px",
-                background: "#dc2626",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                deleteProduct(product.id)
-              }
-            >
-              Delete
-            </button>
+                      <button
+                        style={{
+                          marginLeft: "10px",
+                          background: "#dc2626",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          deleteProduct(product.id)
+                        }
+                      >
+                        Delete
+                      </button>
 
-          </td>
+                    </td>
 
-        )}
+                  )}
 
-      </tr>
+                </tr>
 
-    ))
+              ))
 
-  )}
+            )}
 
-</tbody>
+          </tbody>
 
         </table>
 

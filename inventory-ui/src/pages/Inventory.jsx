@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,7 +24,7 @@ function Inventory() {
   const loadInventory = async () => {
 
     const response = await axios.get(
-      "http://localhost:8080/inventory"
+      `${API_BASE_URL}/inventory`
     );
 
     setInventory(response.data);
@@ -40,7 +41,7 @@ function Inventory() {
   const addInventory = async () => {
 
     await axios.post(
-      "http://localhost:8080/inventory",
+      `${API_BASE_URL}/inventory`,
       {
         productId: formData.productId,
         quantity: formData.quantity,
@@ -71,7 +72,7 @@ function Inventory() {
   const updateInventory = async () => {
 
     await axios.put(
-      `http://localhost:8080/inventory/${formData.id}`,
+      `${API_BASE_URL}/inventory/${formData.id}`,
       formData
     );
 
@@ -97,7 +98,7 @@ function Inventory() {
     }
 
     await axios.delete(
-      `http://localhost:8080/inventory/${id}`
+      `${API_BASE_URL}/inventory/${id}`
     );
 
     loadInventory();
@@ -172,90 +173,90 @@ function Inventory() {
 
           </thead>
 
-  <tbody>
+          <tbody>
 
-  {inventory.length === 0 ? (
+            {inventory.length === 0 ? (
 
-    <tr>
+              <tr>
 
-      <td
-        colSpan={role === "ADMIN" ? 5 : 4}
-        style={{
-          textAlign: "center",
-          padding: "20px",
-          color: "#6b7280",
-          fontWeight: "600"
-        }}
-      >
-        No Inventory Records Available
-      </td>
+                <td
+                  colSpan={role === "ADMIN" ? 5 : 4}
+                  style={{
+                    textAlign: "center",
+                    padding: "20px",
+                    color: "#6b7280",
+                    fontWeight: "600"
+                  }}
+                >
+                  No Inventory Records Available
+                </td>
 
-    </tr>
+              </tr>
 
-  ) : (
+            ) : (
 
-    inventory.map((item) => (
+              inventory.map((item) => (
 
-      <tr key={item.id}>
+                <tr key={item.id}>
 
-        <td>{item.id}</td>
+                  <td>{item.id}</td>
 
-        <td>{item.productId}</td>
+                  <td>{item.productId}</td>
 
-        <td>{item.quantity}</td>
+                  <td>{item.quantity}</td>
 
-        <td>{item.warehouseLocation}</td>
+                  <td>{item.warehouseLocation}</td>
 
-        {role === "ADMIN" && (
+                  {role === "ADMIN" && (
 
-          <td>
+                    <td>
 
-            <button
-              style={{
-                background: "#2563eb",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                editInventory(item)
-              }
-            >
-              Edit
-            </button>
+                      <button
+                        style={{
+                          background: "#2563eb",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          editInventory(item)
+                        }
+                      >
+                        Edit
+                      </button>
 
-            <button
-              style={{
-                marginLeft: "10px",
-                background: "#dc2626",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600"
-              }}
-              onClick={() =>
-                deleteInventory(item.id)
-              }
-            >
-              Delete
-            </button>
+                      <button
+                        style={{
+                          marginLeft: "10px",
+                          background: "#dc2626",
+                          color: "white",
+                          border: "none",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontWeight: "600"
+                        }}
+                        onClick={() =>
+                          deleteInventory(item.id)
+                        }
+                      >
+                        Delete
+                      </button>
 
-          </td>
+                    </td>
 
-        )}
+                  )}
 
-      </tr>
+                </tr>
 
-    ))
+              ))
 
-  )}
+            )}
 
-</tbody>
+          </tbody>
 
         </table>
 

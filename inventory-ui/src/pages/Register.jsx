@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -34,7 +35,7 @@ function Register() {
 
       const response =
         await axios.post(
-          "http://localhost:8080/auth/register",
+          `${API_BASE_URL}/auth/register`,
           {
             username,
             password

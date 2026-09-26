@@ -1,3 +1,4 @@
+import API_BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Users.css";
@@ -15,7 +16,7 @@ function Users() {
     try {
 
       const response = await axios.get(
-        "http://localhost:8080/users"
+        `${API_BASE_URL}/users`
       );
 
       setUsers(response.data);
@@ -33,7 +34,7 @@ function Users() {
     try {
 
       await axios.put(
-        `http://localhost:8080/users/role/${id}?role=${role}`
+        `${API_BASE_URL}/users/role/${id}?role=${role}`
       );
 
       loadUsers();
@@ -108,7 +109,7 @@ function Users() {
                       )
                     }
                   >
-                    Change to {" "}
+                    Change to{" "}
                     {user.role === "ADMIN"
                       ? "USER"
                       : "ADMIN"}
